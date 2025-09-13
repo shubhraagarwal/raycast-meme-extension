@@ -15,7 +15,7 @@ export function useApiKey() {
           setIsLoadingApiKey(false);
           return;
         }
-        
+
         // If not in preferences, try LocalStorage
         const storedApiKey = await LocalStorage.getItem<string>("tenorApiKey");
         if (storedApiKey) {
@@ -27,7 +27,7 @@ export function useApiKey() {
         setIsLoadingApiKey(false);
       }
     };
-    
+
     loadApiKey();
   }, []);
 
