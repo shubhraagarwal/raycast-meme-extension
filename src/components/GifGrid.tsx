@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ActionPanel, Action, Grid, Clipboard, showToast, Toast } from "@raycast/api";
+import { ActionPanel, Action, Grid, Clipboard, showToast, Toast, closeMainWindow } from "@raycast/api";
 import { Gif } from "../types";
 import { copyImageToClipboard } from "../utils/appleScript";
 
@@ -52,16 +52,22 @@ export function GifGrid({
       await showToast({
         style: Toast.Style.Animated,
         title: "Copying GIF...",
-        message: "Downloading and copying to clipboard",
+        message: "Processing and copying to clipboard",
       });
 
       await copyImageToClipboard(gifUrl);
-      
+
       await showToast({
         style: Toast.Style.Success,
         title: "GIF Copied!",
         message: "GIF has been copied to your clipboard",
       });
+
+      // Wait 100ms to ensure toast is visible before closing
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // Close the Raycast overlay completely after successful copy
+      await closeMainWindow();
     } catch (error) {
       console.error("Failed to copy GIF:", error);
       await showToast({
