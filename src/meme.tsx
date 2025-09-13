@@ -1,19 +1,15 @@
 import { useState } from "react";
-import { ActionPanel, Action, Grid, Clipboard, showToast, Toast } from "@raycast/api";
+import { ActionPanel, Action, Grid, Clipboard, showToast, Toast, getPreferenceValues } from "@raycast/api";
 import { useQuery, useInfiniteQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import fetch from "node-fetch";
-import * as dotenv from "dotenv";
-
-// Load environment variables
-dotenv.config();
 
 const queryClient = new QueryClient();
 
-// Get API key from environment variables
-const TENOR_API_KEY = process.env.TENOR_API_KEY;
+// Get API key from Raycast preferences
+const { tenorApiKey } = getPreferenceValues<{ tenorApiKey: string }>();
 
-if (!TENOR_API_KEY) {
-  throw new Error("TENOR_API_KEY environment variable is required. Please create a .env file with your Tenor API key.");
+if (!tenorApiKey) {
+  throw new Error("Tenor API key is required. Please configure it in Raycast preferences.");
 }
 
 interface Gif {
@@ -66,7 +62,7 @@ function MemeCommand() {
     queryKey: ["randomGifs"],
     queryFn: async (): Promise<Gif[]> => {
       const response = await fetch(
-        `https://tenor.googleapis.com/v2/search?q=meme&key=${TENOR_API_KEY}&limit=3&random=true`,
+        `https://tenor.googleapis.com/v2/search?q=meme&key=${tenorApiKey}&limit=3&random=true`,
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -92,8 +88,8 @@ function MemeCommand() {
     queryKey: ["searchGifs", searchText],
     queryFn: async ({ pageParam = "" }): Promise<{ gifs: Gif[]; nextPos: string | null }> => {
       const url = pageParam
-        ? `https://tenor.googleapis.com/v2/search?q=${searchText}&key=${TENOR_API_KEY}&limit=10&pos=${pageParam}`
-        : `https://tenor.googleapis.com/v2/search?q=${searchText}&key=${TENOR_API_KEY}&limit=10`;
+        ? `https://tenor.googleapis.com/v2/search?q=${searchText}&key=${tenorApiKey}&limit=10&pos=${pageParam}`
+        : `https://tenor.googleapis.com/v2/search?q=${searchText}&key=${tenorApiKey}&limit=10`;
 
       const response = await fetch(url);
       if (!response.ok) {
