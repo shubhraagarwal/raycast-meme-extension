@@ -21,13 +21,13 @@ export function ApiKeySetupForm({ onApiKeySaved }: ApiKeySetupFormProps) {
     try {
       // Save the API key to LocalStorage
       await LocalStorage.setItem("tenorApiKey", apiKey.trim());
-      
+
       await showToast({
         style: Toast.Style.Success,
         title: "API Key Saved",
         message: "API key saved successfully!",
       });
-      
+
       // Notify parent component that API key was saved
       onApiKeySaved(apiKey.trim());
     } catch {
@@ -43,11 +43,8 @@ export function ApiKeySetupForm({ onApiKeySaved }: ApiKeySetupFormProps) {
     <Form
       actions={
         <ActionPanel>
-          <Action title="Save API Key" onAction={handleSubmit} />
-          <Action.OpenInBrowser
-            title="Get Tenor API Key"
-            url="https://console.cloud.google.com/"
-          />
+          <Action title="Save Api Key" onAction={handleSubmit} />
+          <Action.OpenInBrowser title="Get Tenor Api Key" url="https://console.cloud.google.com/" />
         </ActionPanel>
       }
     >

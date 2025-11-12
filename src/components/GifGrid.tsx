@@ -109,12 +109,12 @@ export function GifGrid({
               title="Start typing to search for more!"
               actions={
                 <ActionPanel>
-                  <Action title="Copy GIF" onAction={() => copyGifDirectly(gif.url)} />
-                  <Action title="Copy GIF URL" onAction={() => Clipboard.copy(gif.url)} />
+                  <Action title="Copy Gif" onAction={() => copyGifDirectly(gif.url)} />
+                  <Action title="Copy Gif URL" onAction={() => Clipboard.copy(gif.url)} />
                   <Action title="Copy Markdown" onAction={() => Clipboard.copy(`![](${gif.url})`)} />
                   <Action.OpenInBrowser url={gif.url} title="Open in Browser" />
-                  <Action title="Download GIF" onAction={() => downloadGif(gif.url)} />
-                  <Action title="New Random GIFs" onAction={() => onRefetchRandomGifs()} />
+                  <Action title="Download Gif" onAction={() => downloadGif(gif.url)} />
+                  <Action title="New Random Gifs" onAction={() => onRefetchRandomGifs()} />
                 </ActionPanel>
               }
             />
@@ -134,11 +134,11 @@ export function GifGrid({
               content={{ tooltip: gif.title, source: gif.previewUrl }}
               actions={
                 <ActionPanel>
-                  <Action title="Copy GIF" onAction={() => copyGifDirectly(gif.url)} />
-                  <Action title="Copy GIF URL" onAction={() => Clipboard.copy(gif.url)} />
+                  <Action title="Copy Gif" onAction={() => copyGifDirectly(gif.url)} />
+                  <Action title="Copy Gif URL" onAction={() => Clipboard.copy(gif.url)} />
                   <Action title="Copy Markdown" onAction={() => Clipboard.copy(`![](${gif.url})`)} />
                   <Action.OpenInBrowser url={gif.url} title="Open in Browser" />
-                  <Action title="Download GIF" onAction={() => downloadGif(gif.url)} />
+                  <Action title="Download Gif" onAction={() => downloadGif(gif.url)} />
                 </ActionPanel>
               }
             />

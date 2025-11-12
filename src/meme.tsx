@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 function MemeCommand() {
   const [searchText, setSearchText] = useState("");
   const { apiKey, isLoadingApiKey, handleApiKeySaved } = useApiKey();
-  
+
   const { data: randomGifs = [], refetch: refetchRandomGifs } = useRandomGifs(apiKey);
   const {
     data: searchData,
