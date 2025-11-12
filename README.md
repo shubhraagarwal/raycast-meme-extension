@@ -30,12 +30,14 @@ Effortlessly discover and share the funniest memes and trending GIFs directly fr
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/shubhraagarwal/raycast-meme-extension.git
    cd raycast-meme-extension
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -46,6 +48,7 @@ Effortlessly discover and share the funniest memes and trending GIFs directly fr
    - Generate an API key
 
 4. **Run the extension in development mode**
+
    ```bash
    npm run dev
    ```
@@ -88,3 +91,7 @@ src/
 - **TanStack Query** - Data fetching and caching
 - **AppleScript** - Native macOS clipboard integration
 - **Tenor API** - GIF/meme content source
+
+##Screencast
+
+https://github.com/user-attachments/assets/1191f94d-e4bf-433d-ae02-28c15b5b5ad3
